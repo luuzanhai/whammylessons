@@ -2,57 +2,162 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-width=1.0">
-    <title>Whammy Private Guitar Lessons - Sắp ra mắt</title>
-    <!-- Tích hợp Bootstrap để giao diện gọn gàng, Responsive -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Whammy Private Guitar Lessons</title>
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
     <style>
-        body {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            background-color: #fdfbf7;
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
         }
-        .brand-color {
-            color: #ef6c00; /* Màu cam tương đồng với logo Whammy */
+
+        body{
+            min-height:100vh;
+            background: linear-gradient(135deg,#111827,#1f2937);
+            color:white;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            font-family: "Segoe UI", sans-serif;
         }
-        .info-box {
-            background: #ffffff;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            padding: 30px;
+
+        .hero-card{
+            max-width:900px;
+            width:95%;
+            background:rgba(255,255,255,0.08);
+            backdrop-filter:blur(12px);
+            border:1px solid rgba(255,255,255,0.1);
+            border-radius:24px;
+            overflow:hidden;
+            box-shadow:0 20px 50px rgba(0,0,0,0.3);
+        }
+
+        .hero-left{
+            padding:50px;
+        }
+
+        .brand{
+            color:#ff8c1a;
+            font-size:3.5rem;
+            font-weight:800;
+            letter-spacing:2px;
+        }
+
+        .subtitle{
+            color:#d1d5db;
+            font-size:1.2rem;
+            margin-bottom:20px;
+        }
+
+        .coming{
+            display:inline-block;
+            background:#16a34a;
+            padding:10px 18px;
+            border-radius:999px;
+            margin-bottom:25px;
+            font-size:14px;
+            font-weight:600;
+        }
+
+        .description{
+            color:#e5e7eb;
+            line-height:1.8;
+            margin-bottom:30px;
+        }
+
+        .info-item{
+            margin-bottom:12px;
+            color:#f3f4f6;
+        }
+
+        .btn-whammy{
+            background:#ff8c1a;
+            border:none;
+            color:white;
+            font-weight:600;
+            padding:12px 24px;
+            border-radius:12px;
+            transition:0.3s;
+        }
+
+        .btn-whammy:hover{
+            background:#ff7300;
+            transform:translateY(-2px);
+        }
+
+        .hero-right{
+            background:url('https://images.unsplash.com/photo-1510915361894-db8b60106cb1?auto=format&fit=crop&w=1200&q=80')
+            center/cover;
+            min-height:500px;
+        }
+
+        @media(max-width:768px){
+            .brand{
+                font-size:2.5rem;
+            }
+
+            .hero-left{
+                padding:35px;
+            }
+
+            .hero-right{
+                min-height:250px;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container text-center">
-        <div class="row justify-content-center">
-            <div class="col-md-8 col-lg-6 info-box">
-                <!-- Tiêu đề -->
-                <h1 class="display-5 fw-bold brand-color mb-3">Whammy</h1>
-                <h2 class="h5 text-secondary mb-4">Private Guitar Lessons</h2>
-                
-                <!-- Thông báo thành công -->
-                <div class="alert alert-success py-2 mb-4" role="alert">
-                    🎉 Tuyệt vời! Tên miền đã được trỏ thành công về máy chủ.
-                </div>
 
-                <!-- Thông tin liên hệ -->
-                <div class="text-start mb-4">
-                    <p class="mb-2"><strong>🎸 Lớp học:</strong> Acoustic Guitar & Electric Guitar</p>
-                    <p class="mb-2"><strong>📍 Địa chỉ:</strong> 127/37 Thích Quảng Đức, P. Chánh Nghĩa, Thủ Dầu Một</p>
-                    <p class="mb-2"><strong>📞 Điện thoại:</strong> 039 235 2225</p>
-                    <p class="mb-0"><strong>✉️ Email:</strong> vinhphucgtr@gmail.com</p>
-                </div>
-                
-                <!-- Nút liên kết -->
-                <div class="d-grid gap-2">
-                    <a href="https://www.facebook.com/WhammyPrivateGuitarLessons" target="_blank" class="btn btn-outline-dark">
-                        Ghé thăm Fanpage của chúng tôi
-                    </a>
-                </div>
+<div class="hero-card">
+    <div class="row g-0">
+
+        <div class="col-lg-7 hero-left">
+
+            <div class="coming">
+                🎉 Website đang được hoàn thiện
             </div>
+
+            <h1 class="brand">WHAMMY</h1>
+
+            <p class="subtitle">
+                Private Guitar Lessons
+            </p>
+
+            <p class="description">
+                Chuyên đào tạo Acoustic Guitar và Electric Guitar cho mọi trình độ.
+                Website chính thức đang được xây dựng và sẽ sớm ra mắt.
+                Trong thời gian chờ đợi, hãy liên hệ với chúng tôi để được tư vấn khóa học phù hợp nhất.
+            </p>
+
+            <div class="info-item">
+                📍 127/37 Thích Quảng Đức, P. Chánh Nghĩa, Thủ Dầu Một
+            </div>
+
+            <div class="info-item">
+                📞 039 235 2225
+            </div>
+
+            <div class="info-item">
+                ✉️ vinhphucgtr@gmail.com
+            </div>
+
+            <div class="mt-4">
+                <a href="https://www.facebook.com/WhammyPrivateGuitarLessons"
+                   target="_blank"
+                   class="btn btn-whammy">
+                    Ghé thăm Fanpage
+                </a>
+            </div>
+
         </div>
+
+        <div class="col-lg-5 hero-right"></div>
+
     </div>
+</div>
+
 </body>
 </html>
