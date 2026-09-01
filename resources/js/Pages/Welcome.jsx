@@ -41,7 +41,7 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
                 <div className="p-4 bg-gray-50 rounded-md inline-block">
                     <h2 className="font-raleway text-sm font-medium text-gray-900 mb-2">Ảnh Logo đang test:</h2>
                     <img
-                        src="storage/logo_website.png"
+                        src="/logo_website.png"
                         alt="Logo Whammy"
                         className="w-32 h-auto rounded shadow-sm"
                     />
