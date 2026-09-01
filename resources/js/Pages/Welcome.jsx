@@ -4,12 +4,12 @@ import Header from '@/Components/Header'; // Gọi Component Header vào đây
 export default function Welcome({ auth }) {
     return (
         <div className="min-h-screen bg-white text-gray-900 font-sans selection:bg-red-600 selection:text-white">
-            <Head title="Trang chủ - Phong cách Fender" />
+            <Head title="Trang chủ" />
 
             {/* 1. HEADER 3 TẦNG VỪA TẠO */}
             <Header auth={auth} />
 
-            
+
 
 
 
