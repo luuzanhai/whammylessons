@@ -167,6 +167,11 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
                                         Whammy Lessons Guitar
                                     </h2>
 
+                                    <div className="mt-6">
+                                        <h3 className="text-lg font-medium text-gray-900">Ảnh test của tôi:</h3>
+                                        <img src="/logo_website.png" alt="Test Upload" className="w-48 h-auto rounded-lg shadow-md mt-2" />
+                                    </div>
+
                                     <p className="mt-4 text-gray-500 dark:text-gray-400 text-sm leading-relaxed">
                                         Laravel News is a community driven portal and newsletter aggregating all of the
                                         latest and most important news in the Laravel ecosystem, including new package
