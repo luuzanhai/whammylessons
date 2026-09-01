@@ -13,7 +13,11 @@ export default {
     theme: {
         extend: {
             fontFamily: {
-                sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+                sans: ['"Bricolage Grotesque"', ...defaultTheme.fontFamily.sans],
+
+                // Khai báo thêm 2 font kia để dùng cho các chỗ nhấn nhá (như Tiêu đề)
+                montserrat: ['Montserrat', 'sans-serif'],
+                raleway: ['Raleway', 'sans-serif'],
             },
         },
     },
