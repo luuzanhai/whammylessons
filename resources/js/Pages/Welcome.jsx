@@ -49,7 +49,7 @@ export default function Welcome() {
                             <div className="flex justify-between items-start px-1">
                                 <div>
                                     <h3 className="font-sans font-bold text-black text-sm">Lớp Electric Guitar /2 Học Viên</h3>
-                                    <p className="font-sans text-gray-500 text-xs mt-0.5">Acoustic</p>
+                                    <p className="font-sans text-gray-500 text-xs mt-0.5">Classic</p>
                                 </div>
                                 <div className="border border-gray-300 rounded-full px-3 py-1 text-xs font-semibold text-black">
                                     $899
