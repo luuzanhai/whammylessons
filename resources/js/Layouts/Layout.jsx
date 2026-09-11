@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import Sidebar from '@/Components/Sidebar';
 import MobileNav from '@/Components/MobileNav';
 
-export default function MainLayout({ children }) {
+export default function Layout({ children }) {
     const [isDarkMode, setIsDarkMode] = useState(() => {
         const savedTheme = localStorage.getItem('whammy-theme');
         return savedTheme ? savedTheme === 'dark' : true;
@@ -14,18 +14,12 @@ export default function MainLayout({ children }) {
 
     return (
         <div className={`flex min-h-screen overflow-x-hidden font-sans transition-colors duration-300 ${isDarkMode ? 'bg-[#121212] text-white' : 'bg-[#FBFBF9] text-black'}`}>
-
-            {/* Thanh điều hướng cố định */}
             <Sidebar isDarkMode={isDarkMode} onDarkModeChange={setIsDarkMode} />
             <MobileNav isDarkMode={isDarkMode} />
 
-            {/* Khu vực nội dung sẽ được Inertia tự động "bơm" vào biến children */}
-            <main className={`flex-1 overflow-x-hidden overflow-y-auto pt-20 md:pt-10 p-4 md:p-10 transition-colors duration-300 ${isDarkMode ? 'text-white' : 'text-black'}`}>
-                <div className={`border rounded-2xl p-8 min-h-[50vh] ${isDarkMode ? 'bg-[#1E1E1E] border-[#333]' : 'bg-white border-gray-200'}`}>
-                    {children}
-                </div>
+            <main className={`flex-1 min-w-0 overflow-x-hidden overflow-y-auto pt-16 md:pt-0 transition-colors duration-300 ${isDarkMode ? 'text-white' : 'text-black'}`}>
+                {children}
             </main>
-
         </div>
     );
 }

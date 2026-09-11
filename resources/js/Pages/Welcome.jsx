@@ -1,25 +1,14 @@
-import { useState } from 'react';
 import { Head } from '@inertiajs/react';
-import Sidebar from '@/Components/Sidebar';
-import MobileBottomNav from '@/Components/MobileBottomNav';
-
+import Layout from '@/Layouts/Layout';
 
 export default function Welcome() {
-    const [isDarkMode, setIsDarkMode] = useState(true);
-
     return (
-        /* Lớp 1: Khung ngoài cùng khóa cứng màn hình (overflow-hidden) */
-            <div className={`flex h-screen w-full overflow-hidden font-sans relative transition-colors duration-300 ${
-                isDarkMode ? 'bg-[#1a1a1a] text-gray-400' : 'bg-[#FBFBF9] text-gray-600'
-            }`}>
-                <Head title="Trang chủ" />
-
-                {/* Lớp 2: Sidebar cho PC */}
-                <Sidebar onDarkModeChange={setIsDarkMode} />
-
-                {/* Lớp 4: Thanh Nav nổi ĐỘC LẬP bên ngoài thẻ main */}
-                <MobileBottomNav active="home" />
-
-            </div>
+        <div className="p-4 md:p-10">
+            <Head title="Overview" />
+            <h1 className="text-3xl font-bold mb-4">Nội dung trang</h1>
+            <p className="text-gray-400">Nội dung sẽ được cập nhật bằng Inertia khi chuyển trang.</p>
+        </div>
     );
 }
+
+Welcome.layout = (page) => <Layout>{page}</Layout>;

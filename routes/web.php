@@ -16,6 +16,7 @@ use Inertia\Inertia;
 |
 */
 
+// Trang Landing Page (Mặc định)
 Route::get('/', function () {
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
@@ -25,6 +26,28 @@ Route::get('/', function () {
     ]);
 });
 
+// ==========================================
+// CÁC ROUTE MỚI CHO DASHBOARD
+// ==========================================
+Route::get('/home', function () {
+    return Inertia::render('Welcome');
+})->name('home');
+
+Route::get('/classes', function () {
+    return Inertia::render('Classes');
+})->name('classes');
+
+Route::get('/alerts', function () {
+    return Inertia::render('Alerts');
+})->name('alerts');
+
+Route::get('/settings', function () {
+    return Inertia::render('Settings');
+})->name('settings');
+// ==========================================
+
+
+// Khu vực bảo mật (Chỉ khi đăng nhập mới vào được)
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
