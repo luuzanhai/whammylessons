@@ -70,7 +70,7 @@ export default function Sidebar({ isDarkMode = true, onDarkModeChange }) {
                                 <img src="/logo_website.png" alt="Avatar" onError={() => setAvatarError(true)} className="h-full w-full object-cover" />
                             )}
                         </div>
-                        {isExpanded && <div className="min-w-0 overflow-hidden"><p className={`truncate whitespace-nowrap text-sm font-bold ${isDarkMode ? 'text-white' : 'text-black'}`}>Username</p><p className="truncate whitespace-nowrap text-xs text-gray-500">Role</p></div>}
+                        {isExpanded && <div className="min-w-0 overflow-hidden"><p className={`truncate whitespace-nowrap text-sm font-bold ${isDarkMode ? 'text-white' : 'text-black'}`}>Log in</p><p className="truncate whitespace-nowrap text-xs text-gray-500">Role</p></div>}
                     </Link>
                     <button type="button" aria-label="Settings" onClick={() => setIsSettingsOpen(!isSettingsOpen)} className={`flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-lg ${isSettingsOpen ? (isDarkMode ? 'bg-white/15 text-white' : 'bg-gray-200 text-black') : (isDarkMode ? 'text-gray-400 hover:bg-[#333] hover:text-white' : 'text-gray-600 hover:bg-gray-200 hover:text-black')}`}>
                         <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">

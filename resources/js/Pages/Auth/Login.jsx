@@ -34,6 +34,17 @@ export default function Login({ status, canResetPassword }) {
 
             <form onSubmit={submit}>
                 <div>
+                    <h1 className="text-3xl font-bold mb-4 text-center">Log in</h1>
+                    <div className="text-center mb-6 text-sm text-gray-600">
+                        First time?{' '}
+                        <Link
+                            href={route('register')}
+                            className="text-blue-500 hover:underline hover:text-blue-700 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                        >
+                            Register here
+                        </Link>
+                    </div>
+
                     <InputLabel htmlFor="email" value="Email" />
 
                     <TextInput
