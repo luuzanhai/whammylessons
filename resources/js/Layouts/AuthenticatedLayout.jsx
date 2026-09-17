@@ -8,6 +8,9 @@ import { Link } from '@inertiajs/react';
 export default function Authenticated({ user, header, children }) {
     const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false);
 
+    // Hàm phụ trợ để check đường dẫn hiện tại cho class active
+    const isBannerActive = typeof window !== 'undefined' && window.location.pathname.startsWith('/admin/banners');
+
     return (
         <div className="min-h-screen bg-gray-100">
             <nav className="bg-white border-b border-gray-100">
@@ -23,6 +26,11 @@ export default function Authenticated({ user, header, children }) {
                             <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                                 <NavLink href={route('dashboard')} active={route().current('dashboard')}>
                                     Dashboard
+                                </NavLink>
+
+                                {/* TAB THÊM MỚI: QUẢN LÝ BANNER */}
+                                <NavLink href="/admin/banners" active={isBannerActive}>
+                                    Quản lý Banner
                                 </NavLink>
                             </div>
                         </div>
@@ -94,6 +102,11 @@ export default function Authenticated({ user, header, children }) {
                     <div className="pt-2 pb-3 space-y-1">
                         <ResponsiveNavLink href={route('dashboard')} active={route().current('dashboard')}>
                             Dashboard
+                        </ResponsiveNavLink>
+
+                        {/* TAB THÊM MỚI MOBILE: QUẢN LÝ BANNER */}
+                        <ResponsiveNavLink href="/admin/banners" active={isBannerActive}>
+                            Quản lý Banner
                         </ResponsiveNavLink>
                     </div>
 

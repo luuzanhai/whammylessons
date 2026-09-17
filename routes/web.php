@@ -3,6 +3,8 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\BannerController;
+use App\Models\Banner;
 use Inertia\Inertia;
 
 /*
@@ -19,6 +21,10 @@ use Inertia\Inertia;
 // Trang Landing Page (Mặc định)
 Route::get('/', function () {
     return Inertia::render('Welcome', [
+        'banners' => Banner::query()
+            ->where('is_active', true)
+            ->orderBy('order')
+            ->get(),
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
         'laravelVersion' => Application::VERSION,
@@ -30,7 +36,12 @@ Route::get('/', function () {
 // CÁC ROUTE MỚI CHO DASHBOARD
 // ==========================================
 Route::get('/home', function () {
-    return Inertia::render('Welcome');
+    return Inertia::render('Welcome', [
+        'banners' => Banner::query()
+            ->where('is_active', true)
+            ->orderBy('order')
+            ->get(),
+    ]);
 })->name('home');
 
 Route::get('/classes', function () {
@@ -48,14 +59,23 @@ Route::get('/settings', function () {
 
 
 // Khu vực bảo mật (Chỉ khi đăng nhập mới vào được)
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::middleware(['auth', 'verified'])->group(function () {
 
-Route::middleware('auth')->group(function () {
+    Route::get('/dashboard', function () {
+        return Inertia::render('Dashboard');
+    })->name('dashboard');
+
+    // Các Route quản lý Banner
+    Route::get('/admin/banners', [BannerController::class, 'index'])->name('admin.banners');
+    Route::post('/admin/banners', [BannerController::class, 'store']);
+    Route::put('/admin/banners/{banner}', [BannerController::class, 'update']);
+    Route::put('/admin/banners/{banner}/toggle', [BannerController::class, 'toggle']);
+    Route::delete('/admin/banners/{banner}', [BannerController::class, 'destroy']);
+
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
 });
 
 require __DIR__.'/auth.php';
