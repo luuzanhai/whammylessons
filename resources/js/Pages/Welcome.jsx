@@ -17,9 +17,9 @@ export default function Welcome({ banners = [] }) {
         {
             image_url: "carousel-2.webp",
             label: "02 / Lớp Học",
-            title: "Lớp Học\nNăm Xưa",
+            title: "Không Gian\nÂm Nhạc",
             subtitle: "Không gian học tập ấm áp —\nnơi âm nhạc gặp gỡ tâm hồn.",
-            tag: "Giáo Trình Bao Cấp",
+            tag: "Giáo Trình Cao Cấp",
         },
         {
             image_url: "carousel-3.webp",
