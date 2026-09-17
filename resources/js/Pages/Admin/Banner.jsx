@@ -119,11 +119,11 @@ export default function Dashboard({ auth, banners = [] }) {
     const submit = () => {
         if (data.id) {
             // Dùng method spoofing để upload multipart/form-data bằng POST.
-            post(`/admin/banners/${data.id}`, {
-                data: {
-                    ...data,
-                    _method: 'put',
-                },
+            router.post(`/admin/banners/${data.id}`, {
+                ...data,
+                _method: 'put',
+            }, {
+                forceFormData: true,
                 onSuccess: () => {
                     alert('Cập nhật Banner thành công!');
                     reset();

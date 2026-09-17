@@ -44,7 +44,7 @@ const levels = [
 export default function RoadmapSection() {
     const [hovered, setHovered] = useState(null);
     return (
-    <section style={{ backgroundColor: "#f0e6c8", position: "relative", overflow: "hidden", padding: "72px 52px 80px" }}>
+    <section style={{ backgroundColor: "#F4F1EA", position: "relative", overflow: "hidden", padding: "72px 52px 80px" }}>
       {/* Paper grain */}
       <Grain opacity={0.06} blend="multiply" zIndex={1} />
 
@@ -57,7 +57,7 @@ export default function RoadmapSection() {
         <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "20px" }}>
           <div style={{ height: "1px", width: "32px", backgroundColor: "#8b2e1a" }} />
           <span style={{ fontFamily: "'Courier Prime', monospace", fontSize: "0.58rem", letterSpacing: "0.3em", textTransform: "uppercase", color: "#8b2e1a" }}>
-            Chương Trình Đào Tạo · 1978
+            Chương Trình Đào Tạo
           </span>
           <div style={{ height: "1px", flex: 1, backgroundColor: "#c8a96e", opacity: 0.4 }} />
         </div>
@@ -96,7 +96,7 @@ export default function RoadmapSection() {
               style={{
                 position: "relative", overflow: "hidden",
                 aspectRatio: "4/3",
-                backgroundColor: "#1a1208",
+                backgroundColor: "#F4F1EA",
                 transition: "transform 0.4s cubic-bezier(0.25,0.46,0.45,0.94)",
                 transform: hovered === i ? "scale(1.01)" : "scale(1)",
               }}
@@ -156,7 +156,7 @@ export default function RoadmapSection() {
             </div>
 
             {/* Below-card info panel */}
-            <div style={{ backgroundColor: "#ebe0c4", borderTop: "2px solid #2a1f0e", padding: "16px 0 0" }}>
+            <div style={{ backgroundColor: "#F4F1EA", borderTop: "2px solid #2a1f0e", padding: "16px 0 0" }}>
               <p style={{ fontFamily: "'Lora', serif", fontSize: "0.82rem", lineHeight: 1.7, color: "#3a2c14", marginBottom: "12px" }}>
                 {lvl.desc}
               </p>
@@ -176,7 +176,7 @@ export default function RoadmapSection() {
       <div style={{ marginTop: "52px", display: "flex", alignItems: "center", gap: "16px" }}>
         <div style={{ height: "1px", flex: 1, background: "linear-gradient(90deg, #c8a96e, transparent)", opacity: 0.4 }} />
         <span style={{ fontFamily: "'Courier Prime', monospace", fontSize: "0.55rem", letterSpacing: "0.25em", textTransform: "uppercase", color: "#8b2e1a" }}>
-          ✦ Trường Nhạc Dân Gian · Hà Nội ✦
+          ✦ Whammy Private Guitar Lessons ✦
         </span>
         <div style={{ height: "1px", flex: 1, background: "linear-gradient(270deg, #c8a96e, transparent)", opacity: 0.4 }} />
       </div>
