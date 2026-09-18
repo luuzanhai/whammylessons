@@ -4,7 +4,7 @@ import CourseFeatures from '@/Components/CourseFeatures';
 import RoadmapSection from '@/Components/RoadmapSection';
 import Carousel from '@/Components/Carousel';
 
-export default function Welcome({ banners = [] }) {
+export default function Welcome({ banners = [], roadmaps = [] }) {
     // Dữ liệu dự phòng với phong cách Vintage
     const defaultSlides = [
         {
@@ -53,7 +53,7 @@ export default function Welcome({ banners = [] }) {
             {/* ==========================================
                 PHẦN 2 & 3: CÁC KHỐI NỘI DUNG BÊN DƯỚI
                 ========================================== */}
-            <RoadmapSection />
+            <RoadmapSection roadmaps={roadmaps} />
             <CourseFeatures />
 
 

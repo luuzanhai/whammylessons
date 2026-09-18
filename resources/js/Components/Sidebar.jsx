@@ -37,15 +37,19 @@ const menuItems = [
 
 export default function Sidebar({ isDarkMode = true, onDarkModeChange }) {
     let currentUrl = '';
+    let authUser = null;
     try {
         const page = usePage();
         currentUrl = page?.url || '';
+        authUser = page?.props?.auth?.user || null;
     } catch {
         currentUrl = typeof window !== 'undefined' ? window.location.pathname : '';
     }
 
     const normalizedCurrentUrl = (currentUrl || '/').split('?')[0] || '/';
     const activeUrl = normalizedCurrentUrl === '/' ? '/home' : normalizedCurrentUrl;
+    const isAdmin = Number(authUser?.role) === 1;
+    const roleLabel = { 0: 'Khách', 1: 'Admin', 2: 'Học viên' }[Number(authUser?.role)] || 'Khách';
 
     const [isExpanded, setIsExpanded] = useState(() => {
         if (typeof window !== 'undefined') {
@@ -191,7 +195,7 @@ export default function Sidebar({ isDarkMode = true, onDarkModeChange }) {
                         } ${isDarkMode ? 'bg-[#252525]/85' : 'bg-[#EBEBE8]/85'}`}
                     >
                         <Link
-                            href="/login"
+                            href={authUser ? (isAdmin ? '/dashboard' : '/home') : '/login'}
                             className={`flex min-w-0 flex-1 items-center gap-3 rounded-lg p-1 transition-colors ${
                                 !isExpanded ? 'justify-center' : ''
                             } ${isDarkMode ? 'hover:bg-[#333]' : 'hover:bg-gray-200'}`}
@@ -219,10 +223,10 @@ export default function Sidebar({ isDarkMode = true, onDarkModeChange }) {
                             {isExpanded && (
                                 <div className="min-w-0 overflow-hidden text-left">
                                     <p className={`truncate text-sm font-semibold normal-case tracking-normal ${isDarkMode ? 'text-white' : 'text-black'}`}>
-                                        Log in
+                                        {authUser?.name || 'Log in'}
                                     </p>
                                     <p className="truncate text-xs font-normal normal-case tracking-normal text-gray-500">
-                                        Role
+                                        {authUser ? roleLabel : 'Role'}
                                     </p>
                                 </div>
                             )}

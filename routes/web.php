@@ -5,6 +5,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\BannerController;
 use App\Models\Banner;
+use App\Models\Roadmap;
 use Inertia\Inertia;
 
 /*
@@ -25,6 +26,10 @@ Route::get('/', function () {
             ->where('is_active', true)
             ->orderBy('order')
             ->get(),
+        'roadmaps' => Roadmap::query()
+            ->where('is_active', true)
+            ->orderBy('order')
+            ->get(),
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
         'laravelVersion' => Application::VERSION,
@@ -38,6 +43,10 @@ Route::get('/', function () {
 Route::get('/home', function () {
     return Inertia::render('Welcome', [
         'banners' => Banner::query()
+            ->where('is_active', true)
+            ->orderBy('order')
+            ->get(),
+        'roadmaps' => Roadmap::query()
             ->where('is_active', true)
             ->orderBy('order')
             ->get(),
@@ -63,7 +72,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('/dashboard', function () {
         return Inertia::render('Dashboard');
-    })->name('dashboard');
+    })->middleware('admin')->name('dashboard');
 
     // Các Route quản lý Banner
     Route::get('/admin/banners', [BannerController::class, 'index'])->name('admin.banners');

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import Grain from '@/Components/Grain';
 
 
-const levels = [
+const defaultLevels = [
   {
     num: "I",
     label: "Nhập Môn",
@@ -41,113 +41,113 @@ const levels = [
   },
 ];
 
-export default function RoadmapSection() {
+export default function RoadmapSection({ roadmaps = [] }) {
     const [hovered, setHovered] = useState(null);
+    const levels = roadmaps.length > 0
+      ? roadmaps.map((roadmap) => ({
+          ...roadmap,
+          img: toRoadmapImageUrl(roadmap.img),
+          alt: roadmap.alt || roadmap.label,
+          tags: Array.isArray(roadmap.tags) ? roadmap.tags : [],
+        }))
+      : defaultLevels;
+
     return (
-    <section style={{ backgroundColor: "#F4F1EA", position: "relative", overflow: "hidden", padding: "72px 52px 80px" }}>
+    <section className="roadmap-section">
       {/* Paper grain */}
       <Grain opacity={0.06} blend="multiply" zIndex={1} />
 
       {/* Faint ruled lines */}
-      <div style={{ position: "absolute", inset: 0, pointerEvents: "none", backgroundImage: "repeating-linear-gradient(0deg, transparent, transparent 31px, rgba(122,104,64,0.07) 32px)" }} />
+      <div className="roadmap-section__ruled-lines" />
 
       {/* Section header */}
-      <div style={{ position: "relative", marginBottom: "52px" }}>
+      <div className="roadmap-section__header">
         {/* Top ornament line */}
-        <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "20px" }}>
-          <div style={{ height: "1px", width: "32px", backgroundColor: "#8b2e1a" }} />
-          <span style={{ fontFamily: "'Courier Prime', monospace", fontSize: "0.58rem", letterSpacing: "0.3em", textTransform: "uppercase", color: "#8b2e1a" }}>
+        <div className="roadmap-section__eyebrow">
+          <div className="roadmap-section__eyebrow-mark" />
+          <span className="roadmap-section__eyebrow-label">
             Chương Trình Đào Tạo
           </span>
-          <div style={{ height: "1px", flex: 1, backgroundColor: "#c8a96e", opacity: 0.4 }} />
+          <div className="roadmap-section__eyebrow-line" />
         </div>
 
-        <div style={{ display: "flex", alignItems: "baseline", gap: "20px", flexWrap: "wrap" }}>
-          <h2 style={{ fontFamily: "'Playfair Display', serif", fontStyle: "italic", fontSize: "clamp(2rem, 4vw, 3rem)", color: "#2a1f0e", lineHeight: 1, margin: 0 }}>
+        <div className="roadmap-section__title-row">
+          <h2 className="roadmap-section__title">
             Lộ Trình Học
           </h2>
-          <span style={{ fontFamily: "'Courier Prime', monospace", fontSize: "0.7rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "#7a6840" }}>
+          <span className="roadmap-section__subtitle">
             — Ba cấp độ
           </span>
         </div>
 
         {/* Thick bottom rule */}
-        <div style={{ marginTop: "16px", height: "2px", background: "linear-gradient(90deg, #2a1f0e 0%, #2a1f0e 48px, transparent 48px)" }} />
+        <div className="roadmap-section__rule" />
       </div>
 
       {/* Cards grid */}
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "2px", position: "relative" }}>
+      <div className="roadmap-grid">
         {levels.map((lvl, i) => (
           <div
             key={lvl.num}
             onMouseEnter={() => setHovered(i)}
             onMouseLeave={() => setHovered(null)}
-            style={{ position: "relative", cursor: "default" }}
+            className="roadmap-card"
           >
             {/* Roman numeral label above */}
-            <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "10px" }}>
-              <span style={{ fontFamily: "'Courier Prime', monospace", fontSize: "0.58rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "#8b2e1a" }}>
+            <div className="roadmap-card__sublabel">
+              <span className="roadmap-card__sublabel-text">
                 {lvl.sublabel}
               </span>
             </div>
 
             {/* Image card */}
             <div
-              style={{
-                position: "relative", overflow: "hidden",
-                aspectRatio: "4/3",
-                backgroundColor: "#F4F1EA",
-                transition: "transform 0.4s cubic-bezier(0.25,0.46,0.45,0.94)",
-                transform: hovered === i ? "scale(1.01)" : "scale(1)",
-              }}
+              className={`roadmap-card__image ${hovered === i ? 'is-hovered' : ''}`}
             >
               {/* Photo */}
               <img
                 src={lvl.img}
                 alt={lvl.alt}
-                style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", filter: "sepia(0.3) contrast(1.05)", transition: "transform 0.6s ease", transform: hovered === i ? "scale(1.04)" : "scale(1)" }}
+                className={`roadmap-card__photo ${hovered === i ? 'is-hovered' : ''}`}
               />
 
               {/* Gradient overlay */}
-              <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(10,8,4,0.85) 0%, rgba(10,8,4,0.3) 50%, rgba(10,8,4,0.15) 100%)" }} />
+              <div className="roadmap-card__overlay" />
 
               {/* Film grain on photo */}
               <Grain opacity={0.2} />
 
               {/* Corner registration marks */}
               {[
-                { top: 8, left: 8, borderTop: "1.5px solid rgba(200,169,110,0.5)", borderLeft: "1.5px solid rgba(200,169,110,0.5)" },
-                { top: 8, right: 8, borderTop: "1.5px solid rgba(200,169,110,0.5)", borderRight: "1.5px solid rgba(200,169,110,0.5)" },
-                { bottom: 8, left: 8, borderBottom: "1.5px solid rgba(200,169,110,0.5)", borderLeft: "1.5px solid rgba(200,169,110,0.5)" },
-                { bottom: 8, right: 8, borderBottom: "1.5px solid rgba(200,169,110,0.5)", borderRight: "1.5px solid rgba(200,169,110,0.5)" },
-              ].map((s, ci) => (
-                <div key={ci} style={{ position: "absolute", width: 12, height: 12, ...s }} />
+                "top-left", "top-right", "bottom-left", "bottom-right",
+              ].map((corner) => (
+                <div key={corner} className={`roadmap-card__corner roadmap-card__corner--${corner}`} />
               ))}
 
               {/* Content overlay */}
-              <div style={{ position: "absolute", inset: 0, zIndex: 2, display: "flex", flexDirection: "column", justifyContent: "flex-end", padding: "20px 22px" }}>
+              <div className="roadmap-card__content">
                 {/* Roman numeral */}
-                <div style={{ fontFamily: "'Courier Prime', monospace", fontSize: "0.55rem", letterSpacing: "0.3em", color: "rgba(200,169,110,0.7)", textTransform: "uppercase", marginBottom: "6px" }}>
+                <div className="roadmap-card__level">
                   Cấp {lvl.num}
                 </div>
 
                 {/* Big level name */}
-                <div style={{ fontFamily: "'Playfair Display', serif", fontStyle: "italic", fontWeight: 700, fontSize: "clamp(1.8rem, 3.5vw, 2.6rem)", color: "#f5efe0", lineHeight: 1, letterSpacing: "0.02em", textShadow: "0 2px 16px rgba(0,0,0,0.6)", marginBottom: "10px" }}>
+                <div className="roadmap-card__english-title">
                   {lvl.eng}
                 </div>
 
                 {/* Thin rule */}
-                <div style={{ width: 36, height: 1, backgroundColor: "#8b2e1a", marginBottom: "10px" }} />
+                <div className="roadmap-card__divider" />
 
                 {/* Vietnamese title */}
-                <div style={{ fontFamily: "'Lora', serif", fontSize: "0.8rem", color: "rgba(240,230,200,0.8)", marginBottom: "12px" }}>
+                <div className="roadmap-card__label">
                   {lvl.label}
                 </div>
 
                 {/* Stats row */}
-                <div style={{ display: "flex", gap: "16px" }}>
+                <div className="roadmap-card__stats">
                   {[lvl.weeks, lvl.lessons].map((stat, si) => (
-                    <div key={si} style={{ fontFamily: "'Courier Prime', monospace", fontSize: "0.55rem", letterSpacing: "0.15em", textTransform: "uppercase", color: "rgba(200,169,110,0.75)" }}>
+                    <div key={si} className="roadmap-card__stat">
                       {stat}
                     </div>
                   ))}
@@ -156,13 +156,13 @@ export default function RoadmapSection() {
             </div>
 
             {/* Below-card info panel */}
-            <div style={{ backgroundColor: "#F4F1EA", borderTop: "2px solid #2a1f0e", padding: "16px 0 0" }}>
-              <p style={{ fontFamily: "'Lora', serif", fontSize: "0.82rem", lineHeight: 1.7, color: "#3a2c14", marginBottom: "12px" }}>
+            <div className="roadmap-card__details">
+              <p className="roadmap-card__description">
                 {lvl.desc}
               </p>
-              <div style={{ display: "flex", flexWrap: "wrap", gap: "6px" }}>
+              <div className="roadmap-card__tags">
                 {lvl.tags.map(tag => (
-                  <span key={tag} style={{ fontFamily: "'Courier Prime', monospace", fontSize: "0.52rem", letterSpacing: "0.15em", textTransform: "uppercase", color: "#7a6840", border: "1px solid #c8a96e", padding: "2px 8px" }}>
+                  <span key={tag} className="roadmap-card__tag">
                     {tag}
                   </span>
                 ))}
@@ -173,15 +173,27 @@ export default function RoadmapSection() {
       </div>
 
       {/* Footer ornament */}
-      <div style={{ marginTop: "52px", display: "flex", alignItems: "center", gap: "16px" }}>
-        <div style={{ height: "1px", flex: 1, background: "linear-gradient(90deg, #c8a96e, transparent)", opacity: 0.4 }} />
-        <span style={{ fontFamily: "'Courier Prime', monospace", fontSize: "0.55rem", letterSpacing: "0.25em", textTransform: "uppercase", color: "#8b2e1a" }}>
+      <div className="roadmap-section__footer">
+        <div className="roadmap-section__footer-line roadmap-section__footer-line--left" />
+        <span className="roadmap-section__footer-label">
           ✦ Whammy Private Guitar Lessons ✦
         </span>
-        <div style={{ height: "1px", flex: 1, background: "linear-gradient(270deg, #c8a96e, transparent)", opacity: 0.4 }} />
+        <div className="roadmap-section__footer-line roadmap-section__footer-line--right" />
       </div>
     </section>
   );
+}
+
+function toRoadmapImageUrl(imageUrl) {
+  if (!imageUrl || imageUrl.startsWith('data:') || imageUrl.startsWith('http')) {
+    return imageUrl;
+  }
+
+  if (imageUrl.startsWith('/')) {
+    return imageUrl;
+  }
+
+  return `/storage/${imageUrl}`;
 }
 
 
