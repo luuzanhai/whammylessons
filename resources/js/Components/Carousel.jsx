@@ -29,8 +29,8 @@ function getTextPositionStyle(position) {
         display: 'flex',
         flexDirection: 'column',
         gap: '0.35rem',
-        width: '100%',   // Phủ toàn bộ chiều ngang màn hình
-        height: '100%',  // Phủ toàn bộ chiều dọc màn hình
+        width: '100%',
+        height: '100%',
         pointerEvents: 'none',
     };
 }
@@ -100,17 +100,41 @@ export default function Carousel({ slides }) {
                     <h2 className="carousel__title">{slide.title}</h2>
                     <div className="carousel__divider" />
                     <p className="carousel__subtitle">{slide.subtitle || slide.sub}</p>
-                    <div className="carousel__dots" style={{ pointerEvents: 'auto' }}>
-                        {slides.map((_, index) => (
-                            <button
-                                key={index}
-                                onClick={() => goTo(index)}
-                                className={`carousel__dot${index === current ? ' carousel__dot--active' : ''}`}
-                                style={{ width: index === current ? '28px' : '6px' }}
-                            />
-                        ))}
-                    </div>
                 </div>
+            </div>
+
+            <div
+                className="carousel__dots"
+                style={{
+                    position: 'absolute',
+                    left: '50%',
+                    bottom: '32px',
+                    transform: 'translateX(-50%)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '8px',
+                    zIndex: 10,
+                    pointerEvents: 'auto',
+                }}
+            >
+                {slides.map((_, index) => (
+                    <button
+                        key={index}
+                        onClick={() => goTo(index)}
+                        className={`carousel__dot${index === current ? ' carousel__dot--active' : ''}`}
+                        style={{
+                            width: index === current ? '28px' : '6px',
+                            height: '6px',
+                            borderRadius: '999px',
+                            border: 'none',
+                            padding: 0,
+                            background: index === current ? '#d7996d' : 'rgba(255,255,255,0.4)',
+                            cursor: 'pointer',
+                            transition: 'all 0.3s ease',
+                        }}
+                    />
+                ))}
             </div>
 
             <StampMark />
