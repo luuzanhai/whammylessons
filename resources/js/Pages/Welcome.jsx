@@ -5,7 +5,7 @@ import RoadmapSection from '@/Components/RoadmapSection';
 import Carousel from '@/Components/Carousel';
 
 export default function Welcome({ banners = [] }) {
-    // Dữ liệu dự phòng với phong cách Vintage mới (Kết hợp với cấu trúc Database cũ)
+    // Dữ liệu dự phòng với phong cách Vintage
     const defaultSlides = [
         {
             image_url: "carousel-1.webp",

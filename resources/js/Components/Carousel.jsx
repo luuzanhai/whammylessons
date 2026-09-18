@@ -1,20 +1,38 @@
 import { useState, useEffect, useCallback } from 'react';
 import Grain from '@/Components/Grain';
 
+const textNoWrapStyle = {
+    whiteSpace: 'nowrap',
+    display: 'inline-block',
+    maxWidth: '100%',
+    letterSpacing: '0.18em',
+    textTransform: 'uppercase',
+};
+
 function getTextPositionStyle(position) {
     const positions = {
         'top-left': { justifyContent: 'flex-start', alignItems: 'flex-start', textAlign: 'left' },
         'top-center': { justifyContent: 'flex-start', alignItems: 'center', textAlign: 'center' },
         'top-right': { justifyContent: 'flex-start', alignItems: 'flex-end', textAlign: 'right' },
+
         'middle-left': { justifyContent: 'center', alignItems: 'flex-start', textAlign: 'left' },
         'middle-center': { justifyContent: 'center', alignItems: 'center', textAlign: 'center' },
         'middle-right': { justifyContent: 'center', alignItems: 'flex-end', textAlign: 'right' },
+
         'bottom-left': { justifyContent: 'flex-end', alignItems: 'flex-start', textAlign: 'left' },
         'bottom-center': { justifyContent: 'flex-end', alignItems: 'center', textAlign: 'center' },
         'bottom-right': { justifyContent: 'flex-end', alignItems: 'flex-end', textAlign: 'right' },
     };
 
-    return positions[position] || positions['bottom-left'];
+    return {
+        ...(positions[position] || positions['bottom-left']),
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '0.35rem',
+        width: '100%',   // Phủ toàn bộ chiều ngang màn hình
+        height: '100%',  // Phủ toàn bộ chiều dọc màn hình
+        pointerEvents: 'none',
+    };
 }
 
 export default function Carousel({ slides }) {
@@ -77,12 +95,12 @@ export default function Carousel({ slides }) {
                 </div>
 
                 <div className="carousel__content" style={getTextPositionStyle(slide.text_position)}>
-                    <div className="carousel__label">{slide.label}</div>
-                    <div className="carousel__tag">{slide.tag}</div>
+                    <div className="carousel__label" style={textNoWrapStyle}>{slide.label}</div>
+                    <div className="carousel__tag" style={{ ...textNoWrapStyle, alignSelf: 'inherit' }}>{slide.tag}</div>
                     <h2 className="carousel__title">{slide.title}</h2>
                     <div className="carousel__divider" />
                     <p className="carousel__subtitle">{slide.subtitle || slide.sub}</p>
-                    <div className="carousel__dots">
+                    <div className="carousel__dots" style={{ pointerEvents: 'auto' }}>
                         {slides.map((_, index) => (
                             <button
                                 key={index}
