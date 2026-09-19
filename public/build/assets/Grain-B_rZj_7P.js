@@ -1,0 +1,1 @@
+import{t as e}from"./app-ZWI9ZkN0.js";var t=e();function n({opacity:e=.15,blend:n=`screen`,zIndex:r=10,backgroundSize:i=`200px 200px`}){return(0,t.jsx)(`div`,{"aria-hidden":`true`,className:`grain`,style:{opacity:e,mixBlendMode:n,zIndex:r,backgroundSize:i}})}export{n as t};

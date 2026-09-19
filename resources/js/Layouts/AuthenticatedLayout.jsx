@@ -10,6 +10,7 @@ export default function Authenticated({ user, header, children }) {
 
     // Hàm phụ trợ để check đường dẫn hiện tại cho class active
     const isBannerActive = typeof window !== 'undefined' && window.location.pathname.startsWith('/admin/banners');
+    const isRoadmapActive = typeof window !== 'undefined' && window.location.pathname.startsWith('/admin/roadmaps');
 
     return (
         <div className="min-h-screen bg-gray-100">
@@ -30,7 +31,11 @@ export default function Authenticated({ user, header, children }) {
 
                                 {/* TAB THÊM MỚI: QUẢN LÝ BANNER */}
                                 <NavLink href="/admin/banners" active={isBannerActive}>
-                                    Quản lý Banner
+                                    Banner
+                                </NavLink>
+
+                                <NavLink href="/admin/roadmaps" active={isRoadmapActive}>
+                                    Roadmap
                                 </NavLink>
                             </div>
                         </div>
@@ -106,8 +111,14 @@ export default function Authenticated({ user, header, children }) {
 
                         {/* TAB THÊM MỚI MOBILE: QUẢN LÝ BANNER */}
                         <ResponsiveNavLink href="/admin/banners" active={isBannerActive}>
-                            Quản lý Banner
+                            Banner
                         </ResponsiveNavLink>
+
+                        {/* TAB THÊM MỚI MOBILE: QUẢN LÝ ROADMAP */}
+                        <ResponsiveNavLink href="/admin/roadmaps" active={isRoadmapActive}>
+                            Roadmap
+                        </ResponsiveNavLink>
+
                     </div>
 
                     <div className="pt-4 pb-1 border-t border-gray-200">
